@@ -1,14 +1,13 @@
 name: OctaneIntegration
 on:
   workflow_run:
-    workflows: ciworkflow
-    types:
-      - completed
+    workflows: [CI Workflow]
+    types: [completed]
 jobs:
   octane_integration_job:
     # List of runner tags
-    runs-on: ubuntu-latest
-    name: OctaneIntegration#${{github.event.action}}#${{github.event.workflow_run.id}}
+    runs-on: [self-hosted]
+    name: OctaneIntegration-${{ github.repository }}
     steps:
       - name: ALM Octane Octane Integration
         uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
