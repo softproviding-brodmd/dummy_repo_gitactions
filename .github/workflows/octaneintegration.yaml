@@ -1,0 +1,23 @@
+name: OctaneIntegration
+on: push
+env: 
+    NODE_TLS_REJECT_UNAUTHORIZED: 0
+jobs:
+  octane_integration_job:
+    # List of runner tags
+    runs-on: ubuntu-latest
+    name: OctaneIntegration#${{github.event.action}}#${{github.event.workflow_run.id}}
+    steps:
+      - name: ALM Octane Octane Integration
+        uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
+        id: gitHubActionsIntegration
+        with:
+          octaneUrl: 'https://almoctane-eur.saas.microfocus.com/'
+          octaneSharedSpace: 506014
+          octaneWorkspace: 14001
+          octaneClientId: ${{secrets.ALM_OCTANE_CLIENT_ID}}
+          octaneClientSecret: ${{secrets.ALM_OCTANE_CLIENT_SECRET}}
+          serverBaseUrl: https://github.com/softproviding-brodmd/cap-bookshop-wdi5
+          githubToken: ${{secrets.GITHUB_TOKEN}}
+      - name: Hello World Step
+        run: echo "Hello World running"
