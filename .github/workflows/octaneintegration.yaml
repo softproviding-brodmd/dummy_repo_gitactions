@@ -1,5 +1,8 @@
 name: OctaneIntegration
-on: push
+on:
+  push:
+    branches:
+      - main
 jobs:
   octane_integration_job:
     # List of runner tags
@@ -8,16 +11,15 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
-        
+
       - name: ALM Octane Octane Integration
         uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
         id: gitHubActionsIntegration
         with:
-          octaneUrl: 'https://almoctane-eur.saas.microfocus.com/'
+          octaneUrl: "https://almoctane-eur.saas.microfocus.com/"
           octaneSharedSpace: 506014
           octaneWorkspace: 14001
           octaneClientId: ${{secrets.ALM_OCTANE_CLIENT_ID}}
           octaneClientSecret: ${{secrets.ALM_OCTANE_CLIENT_SECRET}}
           githubToken: ${{secrets.GITHUB_TOKEN}}
-          serverBaseUrl: 'https://github.com/softproviding-brodmd/dummy_repo_gitactions'
-          
+          serverBaseUrl: "https://github.com/softproviding-brodmd/dummy_repo_gitactions"
