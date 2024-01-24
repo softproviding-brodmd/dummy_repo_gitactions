@@ -3,15 +3,16 @@ on:
   push:
     branches:
       - main
+  workflow_run:
+    workflows: ciworkflow
+    types:
+      - completed
 jobs:
   octane_integration_job:
     # List of runner tags
     runs-on: ubuntu-latest
     name: OctaneIntegration#${{github.event.action}}#${{github.event.workflow_run.id}}
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v4
-
       - name: ALM Octane Octane Integration
         uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
         id: gitHubActionsIntegration
