@@ -1,7 +1,5 @@
 name: OctaneIntegration
 on: push
-env: 
-    NODE_TLS_REJECT_UNAUTHORIZED: 0
 jobs:
   octane_integration_job:
     # List of runner tags
