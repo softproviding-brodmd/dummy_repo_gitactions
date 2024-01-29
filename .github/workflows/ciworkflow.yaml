@@ -1,7 +1,5 @@
 name: CI
-on:
-  pull_request:
-    types: [opened, edited, closed, reopened]
+on: push
 
 jobs:
   ciJob:
@@ -9,5 +7,5 @@ jobs:
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v4
-        # run: echo "Hello World"
+        # uses: actions/checkout@v4
+        run: echo "Dummy Action"
