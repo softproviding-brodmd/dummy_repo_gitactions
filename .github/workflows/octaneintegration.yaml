@@ -1,8 +1,11 @@
 name: OctaneIntegration
 on:
+  pull_request:
+    types: [opened, edited, closed, reopened]
   workflow_run:
-    workflows: [CI Workflow]
-    types: [completed]
+    # List of workflows to integrate with ALM Octane
+    workflows: [CI]
+    types: [requested, completed]
 jobs:
   octane_integration_job:
     # List of runner tags
