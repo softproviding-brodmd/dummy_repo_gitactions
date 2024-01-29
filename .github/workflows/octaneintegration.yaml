@@ -4,7 +4,7 @@ on:
     types: [opened, edited, closed, reopened]
   workflow_run:
     workflows: [CI]
-    types: [completed]
+    types: [requested]
 jobs:
   octane_integration_job:
     # List of runner tags
