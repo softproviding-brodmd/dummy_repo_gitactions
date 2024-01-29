@@ -5,6 +5,9 @@ on:
   workflow_run:
     workflows: [CI]
     types: [requested, completed]
+  push:
+    branches:
+      - main
 jobs:
   octane_integration_job:
     # List of runner tags
