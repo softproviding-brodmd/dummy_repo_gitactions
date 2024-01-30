@@ -1,11 +1,13 @@
-# name: CI
-# on: push
+# This job only exists to trigger the octaneintegration workflow.
+# This job contains no actions
+name: CI
+on: push
 
-# jobs:
-#   ciJob:
-#     runs-on: ubuntu-latest
+jobs:
+  ciJob:
+    runs-on: ubuntu-latest
 
-#     steps:
-#       - name: Checkout Repository
-#         # uses: actions/checkout@v4
-#         run: echo "Dummy Action"
+    steps:
+      - name: Checkout Repository
+        # uses: actions/checkout@v4
+        run: echo "Dummy Action"

@@ -1,26 +1,28 @@
-# name: OctaneIntegration
-# on:
-#   pull_request:
-#     types: [opened, edited, closed, reopened]
-#   workflow_run:
-#     workflows: [CI]
-#     types: [requested]
-# jobs:
-#   octane_integration_job:
-#     # List of runner tags
-#     runs-on: [ubuntu-latest]
-#     name: OctaneIntegration#${{github.event.action}}#${{github.event.workflow_run.id}}
-#     steps:
-#       - name: ALM Octane Octane Integration
-#         uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
-#         id: gitHubActionsIntegration
-#         with:
-#           octaneUrl: https://almoctane-eur.saas.microfocus.com/
-#           octaneSharedSpace: 506014
-#           octaneWorkspace: 14001
-#           octaneClientId: ${{secrets.ALM_OCTANE_CLIENT_ID}}
-#           octaneClientSecret: ${{secrets.ALM_OCTANE_CLIENT_SECRET}}
-#           githubToken: ${{secrets.GITHUB_TOKEN}}
-#           serverBaseUrl: https://github.com/softproviding-brodmd/dummy_repo_gitactions
-#           # Pattern for identifying JUnit style report files for test result injection in ALM Octane
-#           unitTestResultsGlobPattern: "**/*.xml"
+# workflow to sync with alm octane
+name: OctaneIntegration
+on: # this events somehow can't be changed, according to opentext support
+  # integration only works with those to triggers. check example on: https://github.com/MicroFocus/alm-octane-github-actions-integration
+  pull_request:
+    types: [opened, edited, closed, reopened]
+  workflow_run:
+    workflows: [CI]
+    types: [requested]
+jobs:
+  octane_integration_job:
+    # List of runner tags
+    runs-on: [ubuntu-latest]
+    name: OctaneIntegration#${{github.event.action}}#${{github.event.workflow_run.id}}
+    steps:
+      - name: ALM Octane Octane Integration
+        uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
+        id: gitHubActionsIntegration
+        with:
+          octaneUrl: https://almoctane-eur.saas.microfocus.com/
+          octaneSharedSpace: 506014
+          octaneWorkspace: 14001
+          octaneClientId: ${{secrets.ALM_OCTANE_CLIENT_ID}}
+          octaneClientSecret: ${{secrets.ALM_OCTANE_CLIENT_SECRET}}
+          githubToken: ${{secrets.GITHUB_TOKEN}}
+          serverBaseUrl: https://github.com/softproviding-brodmd/dummy_repo_gitactions
+          # Pattern for identifying JUnit style report files for test result injection in ALM Octane
+          unitTestResultsGlobPattern: "**/*.xml"
