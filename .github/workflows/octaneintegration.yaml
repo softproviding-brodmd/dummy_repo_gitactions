@@ -5,9 +5,10 @@ on:
     types: [opened, edited, closed, reopened]
   workflow_run:
     workflows: [CI]
-    types: [in_progress]
+    types: [requested, completed]
     # this event triggers somehow can't be changed, according to opentext support.
-  # integration only works with those to triggers. check example on: https://github.com/MicroFocus/alm-octane-github-actions-integration
+  # integration only works with those to triggers.
+  # check example on: https://github.com/MicroFocus/alm-octane-github-actions-integration
 jobs:
   octane_integration_job:
     # List of runner tags
