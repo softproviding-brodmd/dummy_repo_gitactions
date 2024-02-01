@@ -8,6 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Repository
+      - name: Dummy Step
         # uses: actions/checkout@v4
         run: echo "Dummy Action"
