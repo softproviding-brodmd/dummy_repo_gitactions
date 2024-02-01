@@ -15,7 +15,7 @@ jobs:
     runs-on: [ubuntu-latest]
     name: octane-git-integration
     steps:
-      - name: ALM Octane Octane Integration
+      - name: Octane Git Integration
         uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
         id: gitHubActionsIntegration
         with:
