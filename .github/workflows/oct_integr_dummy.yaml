@@ -1,10 +1,10 @@
 # This job only exists to trigger the octaneintegration workflow.
 # This job contains no actions
-name: CI
+name: oct-integr-dummy
 on: push
 
 jobs:
-  ciJob:
+  oct_dummy:
     runs-on: ubuntu-latest
 
     steps:

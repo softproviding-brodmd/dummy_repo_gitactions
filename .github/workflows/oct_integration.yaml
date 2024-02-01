@@ -1,10 +1,10 @@
 # workflow to sync with alm octane
-name: OctaneIntegration
+name: octane-integration
 on:
   pull_request:
     types: [opened, edited, closed, reopened]
   workflow_run:
-    workflows: [CI]
+    workflows: [oct-integr-dummy]
     types: [requested]
     # this event triggers somehow can't be changed, according to opentext support.
   # integration only works with those to triggers.
@@ -20,10 +20,10 @@ jobs:
         id: gitHubActionsIntegration
         with:
           octaneUrl: https://almoctane-eur.saas.microfocus.com/
-          octaneSharedSpace: 506014
-          octaneWorkspace: 14001
-          octaneClientId: ${{secrets.ALM_OCTANE_CLIENT_ID}}
-          octaneClientSecret: ${{secrets.ALM_OCTANE_CLIENT_SECRET}}
+          octaneSharedSpace: ${{secrets.OCT_SHARED_SPACE}}
+          octaneWorkspace: ${{secrets.OCT_WORKSPACE}}
+          octaneClientId: ${{secrets.OCT_CLIENT_ID}}
+          octaneClientSecret: ${{secrets.OCT_CLIENT_SECRET}}
           githubToken: ${{secrets.GITHUB_TOKEN}}
           serverBaseUrl: https://github.com/softproviding-brodmd/dummy_repo_gitactions
           # Pattern for identifying JUnit style report files for test result injection in ALM Octane
