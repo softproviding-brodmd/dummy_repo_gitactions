@@ -1,32 +1,29 @@
-# workflow to sync with alm octane
+# workflow to sync github repository with alm octane
+# check example on: https://github.com/MicroFocus/alm-octane-github-actions-integration
 name: octane-integration
-on:
+on: # when to execute workflow
   pull_request:
     types: [opened, edited, closed, reopened]
   workflow_run:
     workflows: [oct-integr-dummy]
     types: [requested]
     # this event triggers somehow can't be changed, according to opentext support.
-  # integration only works with those to triggers.
-  # check example on: https://github.com/MicroFocus/alm-octane-github-actions-integration
+  # integration only works with those two triggers.
 jobs:
   octane_integration_job:
     # List of runner tags
-    runs-on: [ubuntu-latest]
+    runs-on: [ubuntu-latest] # github actions default
     name: octane-git-integration
-    steps:
+    steps: # job can consist of multiple steps
       - name: Octane Git Integration
         uses: MicroFocus/alm-octane-github-actions-integration@v23.3.0
         id: gitHubActionsIntegration
         with:
           octaneUrl: https://almoctane-eur.saas.microfocus.com/
-          octaneSharedSpace: ${{secrets.OCT_SHARED_SPACE}}
+          octaneSharedSpace: ${{secrets.OCT_SHARED_SPACE}} # all secrets need to be set in github settings
           octaneWorkspace: ${{secrets.OCT_WORKSPACE}}
           octaneClientId: ${{secrets.OCT_CLIENT_ID}}
           octaneClientSecret: ${{secrets.OCT_CLIENT_SECRET}}
           githubToken: ${{secrets.GITHUB_TOKEN}}
-          serverBaseUrl: https://github.com/softproviding-brodmd/dummy_repo_gitactions
-          # Pattern for identifying JUnit style report files for test result injection in ALM Octane
-          unitTestResultsGlobPattern: "**/*.xml"
-
-  
+          serverBaseUrl: ${{github.server_url}}/${{github.repository}} # will user url: www.github.com/*reponame* 
+          unitTestResultsGlobPattern: "**/*.xml" # Pattern for identifying JUnit style report files for test result injection in ALM Octane
