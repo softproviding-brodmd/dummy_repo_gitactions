@@ -10,4 +10,4 @@ jobs:
     steps:
       - name: Dummy Step
         # uses: actions/checkout@v4
-        run: echo "Dummy Action"
+        run: echo ${{github.server.url}}/${{github.repository.name}}
